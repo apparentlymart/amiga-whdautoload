@@ -1,0 +1,2 @@
+cd DH1:archive
+lha -r r DH1:whdautoload.lha

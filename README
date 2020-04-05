@@ -1,0 +1,34 @@
+Short:        Automatically launch WHDLoad installs
+Uploader:     mart@degeneration.co.uk (Martin Atkins)
+Author:       mart@degeneration.co.uk (Martin Atkins)
+Type:         util/misc
+Version:      1.0
+Architecture: m68k-amigaos
+
+This is a very thin wrapper around WHDLoad (which must also be installed) that
+searches in the current directory for a Workbench icon whose default tool is
+WHDLoad and then executes WHDLoad with that icon.
+
+The author uses this in a small FFS hard disk image designed to be used as boot
+media in an emulated DH0: in conjunction with a second disk image in DH1: that
+contains a single WHDLoad in its root directory. The boot disk contains
+WHDAutoload and WHDLoad in C:, kickstart images in DEVS:Kickstarts, and an
+S:startup-sequence like the following:
+
+    cd DH1:
+    WHDAutoload
+
+This is then just a convenience for launching WHDLoad installs easily in
+emulators and FPGA-based reproductions of Amiga hardware, without first booting
+into Workbench and launching manually from an icon. It expects to find WHDLoad
+in C: or in some other directory listed in the current command path.
+
+WHDAutoload is intended to work with the typical directory structure resulting
+from an WHDLoad install, which has in its root directory a Workbench icon
+whose default tool is WHDLoad and whose tooltypes include the local WHDLoad
+configuration to use. This avoids the need to include any additional files
+on a per-install basis, to allow constructing a generic boot disk that can
+(in theory, at least) boot into any WHDLoad install.
+
+Source code is included in case you want to tweak its behavior to suit other
+uses.
